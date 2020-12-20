@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">HKR-App1</string>
+    <string name="buttonPlay">Play</string>
+    <string name="textTitle">Math Game!</string>
+    <string name="buttonScore">Score</string>
+    <string name="buttonHelp">Help</string>
+</resources>
