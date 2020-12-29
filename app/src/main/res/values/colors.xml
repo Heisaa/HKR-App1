@@ -12,4 +12,6 @@
     <color name="primaryLightColor">#449f72</color>
     <color name="primaryDarkColor">#00441e</color>
     <color name="primaryTextColor">#ffffff</color>
+
+    <color name="secondary_text">#8a000000</color>
 </resources>

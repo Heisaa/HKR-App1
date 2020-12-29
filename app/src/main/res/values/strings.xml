@@ -4,4 +4,7 @@
     <string name="textTitle">Math Game!</string>
     <string name="buttonScore">Score</string>
     <string name="buttonHelp">Help</string>
+    <string name="buttonGuess">Guess</string>
+    <string name="textFeedback" />
+    <string name="textRound">Round</string>
 </resources>

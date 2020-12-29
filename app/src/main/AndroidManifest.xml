@@ -9,20 +9,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.HKRApp1">
-        <activity android:name=".TitleActivity">
+        <activity
+            android:name=".ScoreActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".PlayActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".TitleActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MenuActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity
+            android:name=".MenuActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>
