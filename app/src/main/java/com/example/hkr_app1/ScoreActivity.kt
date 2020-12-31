@@ -3,6 +3,8 @@ package com.example.hkr_app1
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Parcelable
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,18 +13,32 @@ import android.widget.ListView
 import android.widget.TextView
 
 class ScoreActivity : AppCompatActivity() {
+    private var scoreList: ArrayList<Score> = DataSaver.savedList
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_score)
 
-        val listViewScore = findViewById<ListView>(R.id.listScore)
-        val scoreList = mutableListOf<Score>()
-        val scoreNum = intent.getIntExtra("score", 0)
 
-        val score = Score(scoreNum)
-        scoreList.add(score)
+        if(intent.hasExtra("score")) {
+            Log.i("Hej", "onCreate")
 
-        listViewScore.adapter = MyListAdapter(this, scoreList)
+            val scoreNum = intent.getIntExtra("score", -1)
+
+            val score = Score(scoreNum)
+            scoreList.add(score)
+
+            val listViewScore = findViewById<ListView>(R.id.listScore)
+            listViewScore.adapter = MyListAdapter(this, scoreList)
+
+
+        } else {
+            val listViewScore = findViewById<ListView>(R.id.listScore)
+            listViewScore.adapter = MyListAdapter(this, scoreList)
+        }
+
+        DataSaver.savedList = scoreList
+
     }
 
     private class MyListAdapter(private val context: Context, private val scoreList: MutableList<Score>) : BaseAdapter() {
@@ -31,7 +47,7 @@ class ScoreActivity : AppCompatActivity() {
         }
 
         override fun getItem(position: Int): Any {
-            TODO("Not yet implemented")
+            return scoreList.get(position)
         }
 
         override fun getItemId(position: Int): Long {

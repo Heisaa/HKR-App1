@@ -14,6 +14,7 @@ class TitleActivity : AppCompatActivity() {
 
         buttonPlay.setOnClickListener {
             val intent = Intent(this, MenuActivity::class.java)
+            finish()
             startActivity(intent)
         }
     }

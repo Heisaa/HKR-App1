@@ -24,7 +24,7 @@ class PlayActivity : AppCompatActivity() {
         var answer = generateChallange(1, textAddition)
         var score = 0
         var round = 1
-        val endRound = 4
+        val endRound = 5
 
         var state = State.GUESSING
 
@@ -65,6 +65,7 @@ class PlayActivity : AppCompatActivity() {
                     if (round >= endRound) {
                         val intent = Intent(this, ScoreActivity::class.java)
                         intent.putExtra("score", score)
+                        finish()
                         startActivity(intent)
                     } else {
 

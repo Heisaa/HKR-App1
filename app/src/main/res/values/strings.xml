@@ -7,4 +7,8 @@
     <string name="buttonGuess">Guess</string>
     <string name="textFeedback" />
     <string name="textRound">Round</string>
+    <string name="textHelpHeader">Help</string>
+    <string name="textHelp">In this simple math game you will practice your addition skills. Press play to start a game, guess the right answer by clicking the input line right of the equals sign. When you are done press the guess button and you will se if your answer is correct. Press continue to go to the next challange.
+
+        \n\nWhen you are done you are taken to the score screen where your score are saved for each playing session. You can also view the score screen from the main menu.</string>
 </resources>
