@@ -3,8 +3,9 @@ package com.example.hkr_app1
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
-class Score(score : Int) {
+class Score(score : Int, difficulty: String?) {
     val score = score
+    val difficulty = difficulty
     var time: String
 
     init {

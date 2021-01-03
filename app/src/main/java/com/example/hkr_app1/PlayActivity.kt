@@ -20,16 +20,19 @@ class PlayActivity : AppCompatActivity() {
         val editGuess = findViewById<EditText>(R.id.editGuess)
         val textFeedback = findViewById<TextView>(R.id.textFeedback)
         val textRound = findViewById<TextView>(R.id.textRound)
+        val textDiff = findViewById<TextView>(R.id.textDiff)
 
         var answer = generateChallange(1, textAddition)
         var score = 0
         var round = 1
-        val endRound = 5
+        val endRound = 2 // Change this to lower value for quick testing
 
         var state = State.GUESSING
+        var difficulty = Difficulty.Easy
 
         buttonGuess.isEnabled = false
         textRound.text = "${round}/${endRound}"
+        textDiff.text = "Difficulty: ${difficulty}"
 
         editGuess.doAfterTextChanged {
             // Deactivate button if guess is empty
@@ -60,26 +63,37 @@ class PlayActivity : AppCompatActivity() {
 
                 State.FEEDBACK -> {
 
+                    if (round == endRound) {
+                        if(score == round && difficulty == Difficulty.Easy) {
+                            difficulty = Difficulty.Medium
+                            round = 0
+                        } else if (score   == round * 2 && difficulty == Difficulty.Medium) {
+                            difficulty = Difficulty.Hard
+                            round = 0
+                        } else {
 
-
-                    if (round >= endRound) {
-                        val intent = Intent(this, ScoreActivity::class.java)
-                        intent.putExtra("score", score)
-                        finish()
-                        startActivity(intent)
-                    } else {
-
-                        textFeedback.text = ""
-                        editGuess.isEnabled = true
-                        editGuess.text.clear()
-                        buttonGuess.text = "Guess"
-
-
-                        answer = generateChallange(1, textAddition)
-                        round++
-
-                        state = State.GUESSING
+                            val intent = Intent(this, ScoreActivity::class.java)
+                            intent.putExtra("score", score)
+                            intent.putExtra("difficulty", difficulty.toString())
+                            finish()
+                            startActivity(intent)
+                        }
                     }
+
+                    textFeedback.text = ""
+                    editGuess.isEnabled = true
+                    editGuess.text.clear()
+                    buttonGuess.text = "Guess"
+
+                    when(difficulty) {
+                        Difficulty.Easy -> answer = generateChallange(1, textAddition)
+                        Difficulty.Medium -> answer = generateChallange(2, textAddition)
+                        Difficulty.Hard -> answer = generateChallange(3, textAddition)
+                    }
+
+                    round++
+
+                    state = State.GUESSING
 
 
                 }
@@ -87,7 +101,7 @@ class PlayActivity : AppCompatActivity() {
 
 
             textRound.text = "Round ${round}/${endRound}\nScore: ${score}"
-
+            textDiff.text = "Difficulty: ${difficulty}"
 
         }
     }
@@ -115,5 +129,11 @@ class PlayActivity : AppCompatActivity() {
     enum class State {
         GUESSING,
         FEEDBACK,
+    }
+
+    enum class Difficulty{
+        Easy,
+        Medium,
+        Hard
     }
 }

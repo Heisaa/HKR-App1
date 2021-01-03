@@ -21,11 +21,11 @@ class ScoreActivity : AppCompatActivity() {
 
 
         if(intent.hasExtra("score")) {
-            Log.i("Hej", "onCreate")
 
             val scoreNum = intent.getIntExtra("score", -1)
+            val scoreDifficulty = intent.getStringExtra("difficulty")
 
-            val score = Score(scoreNum)
+            val score = Score(scoreNum, scoreDifficulty)
             scoreList.add(score)
 
             val listViewScore = findViewById<ListView>(R.id.listScore)
@@ -61,7 +61,7 @@ class ScoreActivity : AppCompatActivity() {
             val textScore = row.findViewById<TextView>(R.id.textScore)
             val textTime = row.findViewById<TextView>(R.id.textTime)
 
-            textScore.text = "Score: ${scoreList.get(position).score.toString()}"
+            textScore.text = "Score: ${scoreList.get(position).score.toString()} - Difficulty: ${scoreList.get(position).difficulty}"
             textTime.text = scoreList.get(position).time
 
             return row
